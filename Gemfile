@@ -9,6 +9,7 @@ gem 'mysql2'
 gem 'carrierwave'
 
 group :development do
+  gem 'capistrano-rails'
   gem 'rspec-rails'
 end
 
