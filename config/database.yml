@@ -37,6 +37,7 @@ production:
   reconnect: false
   database: kokavo_production
   pool: 5
-  username: root
-  password:
+  host: been-there-mysql.cu85suap3wnr.us-east-1.rds.amazonaws.com
+  username: boten
+  password: ladyjulie
   socket: /tmp/mysql.sock
