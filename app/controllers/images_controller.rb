@@ -59,6 +59,7 @@ class ImagesController < ApplicationController
   def images_json(images)
     images.map do |image| 
       {
+        id: image.id,
         url: "http://kokavo.com" + image.url,
         been_theres_count: image.been_theres.count,
         comments_count: image.comments.count,
