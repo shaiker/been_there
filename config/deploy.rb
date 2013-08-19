@@ -7,6 +7,8 @@ set :deploy_to, '/home/deploy/beenthere'
 set :user, "deploy"
 
 server "kokavo.com", :app, :web
+# ssh_options[:paranoid] = false
+# set :deploy_via, :remote_cache
 
 # role :web, "kokavo.com"                          # Your HTTP server, Apache/etc
 # role :app, "kokavo.com"                          # This may be the same as your `Web` server

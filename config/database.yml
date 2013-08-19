@@ -34,10 +34,8 @@ test:
 production:
   adapter: mysql2
   encoding: utf8
-  reconnect: false
   database: kokavo_production
   pool: 5
   host: been-there-mysql.cu85suap3wnr.us-east-1.rds.amazonaws.com
   username: boten
   password: ladyjulie
-  socket: /tmp/mysql.sock
