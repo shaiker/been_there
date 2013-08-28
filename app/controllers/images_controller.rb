@@ -20,7 +20,8 @@ class ImagesController < ApplicationController
   end
 
   def create
-    @image = Image.create(params[:image])
+    image_params = params[:image] || { url: params[:url], caption: params[:caption], user_id: params[:user_id] }  ### Temporary code ###
+    @image = Image.create(image_params)
     render json: { success: true }
   end
 
@@ -60,7 +61,7 @@ class ImagesController < ApplicationController
     images.map do |image| 
       {
         id: image.id,
-        url: "http://kokavo.com" + image.url,
+        url: "http://kokavo.com" + image.url.to_s,
         been_theres_count: image.been_theres.count,
         comments_count: image.comments.count,
         comments: comments_json(image.comments.first(3)),
