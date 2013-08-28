@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
 
-  before_filter :set_user, except: [:new, :create]
-  before_filter :set_image, except: [:index, :new, :create]
+  before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment]
+  before_filter :set_image, only: [:comment, :comments]
 
   def index
     before = Time.at((params[:before] || Time.now).to_i)
@@ -44,6 +44,10 @@ class ImagesController < ApplicationController
   def comment
     @image.comments.create(user_id: @user.id, text: params[:text])
     render json: { success: true }
+  end
+
+  def comments
+    render json: comments_json(@image.comments)
   end
 
 

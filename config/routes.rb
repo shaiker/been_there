@@ -6,7 +6,8 @@ Kokavo::Application.routes.draw do
       get 'been_there'
       get 'unbeen_there'
       get 'view'
-      get 'comment' #should be post
+      post 'comment'
+      get 'comments'
     end
   end
 
