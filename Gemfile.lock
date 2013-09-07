@@ -60,6 +60,7 @@ GEM
     erubis (2.7.0)
     execjs (1.4.0)
       multi_json (~> 1.0)
+    god (0.13.2)
     highline (1.6.19)
     hike (1.2.3)
     i18n (0.6.4)
@@ -68,6 +69,7 @@ GEM
       railties (>= 3.0, < 5.0)
       thor (>= 0.14, < 2.0)
     json (1.8.0)
+    kgio (2.8.0)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -105,6 +107,7 @@ GEM
       rake (>= 0.8.7)
       rdoc (~> 3.4)
       thor (>= 0.14.6, < 2.0)
+    raindrops (0.12.0)
     rake (10.1.0)
     rdoc (3.12.2)
       json (~> 1.4)
@@ -123,6 +126,8 @@ GEM
       rspec-core (~> 2.13.0)
       rspec-expectations (~> 2.13.0)
       rspec-mocks (~> 2.13.0)
+    rvm-capistrano (1.5.0)
+      capistrano (>= 2.15.4)
     sass (3.2.9)
     sass-rails (3.2.6)
       railties (~> 3.2.0)
@@ -142,6 +147,10 @@ GEM
     uglifier (2.1.1)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
+    unicorn (4.6.3)
+      kgio (~> 2.6)
+      rack
+      raindrops (~> 0.7)
 
 PLATFORMS
   ruby
@@ -151,10 +160,13 @@ DEPENDENCIES
   carrierwave
   coffee-rails (~> 3.2.1)
   debugger
+  god
   jquery-rails
   mysql2
   rails (= 3.2.11)
   rspec
   rspec-rails
+  rvm-capistrano
   sass-rails (~> 3.2.3)
   uglifier (>= 1.0.3)
+  unicorn
