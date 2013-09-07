@@ -1,3 +1,23 @@
+APP_CONFIG = YAML.load_file("config/config.yml")[rails_env]
+# --------------------------------------------------
+# Bundler integration - supplies bundle:install task
+# --------------------------------------------------
+require "bundler/capistrano"
+
+# --------------------------------------------------
+# RVM settings
+# -------------------------------------------
+require "rvm/capistrano"
+set :rvm_ruby_string, "1.9.3-p327"
+
+# -------------------------------------------
+# Stages settings - allows cap [stage] deploy
+# -------------------------------------------
+set :stages, %w(production)
+set :default_stage, :production
+require 'capistrano/ext/multistage'
+
+
 set :application, "been_there"
 set :repository,  "git@github.com:shaiker/been_there.git"
 
@@ -7,6 +27,9 @@ set :deploy_to, '/home/deploy/beenthere'
 set :user, "deploy"
 
 server "kokavo.com", :app, :web
+
+
+
 # ssh_options[:paranoid] = false
 # set :deploy_via, :remote_cache
 

@@ -8,6 +8,30 @@ class UsersController < ApplicationController
     ##TODO - all comments and been theres after given time
   end
 
+  def images
+    @user = User.find(params[:id])
+    render json: @user.images.as_json(user_id: @user.id)
+  end
+
+  def signup
+    if params[:fb_uid].present?
+      if params[:anonymous_id].present?
+        @user = User.find(params[:anonymous_id])
+        @user.fb_uid = params[:fb_uid]
+      else
+        @user = User.find_or_initialize_by_fb_uid(params[:fb_uid])
+      end
+      @user.fb_access_token = params[:fb_access_token]
+      @user.image = "http://graph.facebook.com/#{params[:fb_uid]}/picture?type=square"
+      @user.name = "temp - facebook"
+      ##TODO : get real user name
+    else
+      @user = User.new
+    end
+    @user.save
+    render json: { user_id: @user.id }
+  end
+
   # GET /users
   # GET /users.json
   def index

@@ -9,6 +9,7 @@ if defined?(Bundler)
   Bundler.require(:default, :assets, Rails.env)
 end
 
+APP_CONFIG = YAML.load_file("config/config.yml")[Rails.env]
 module Kokavo
   class Application < Rails::Application
     # Settings in config/environments/* take precedence over those specified here.

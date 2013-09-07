@@ -8,4 +8,17 @@ class Image < ActiveRecord::Base
 
   mount_uploader :url, ImageUploader
   
+
+  def as_json(options = nil)
+    {
+      id: id,
+      url: APP_CONFIG['host'] + url.to_s,
+      caption: caption,
+      been_theres_count: been_theres.count,
+      comments_count: comments.count,
+      been_there?: been_theres.where(user_id: options[:user_id]).count > 0,
+      created_at: created_at.to_i
+    }.as_json(options)
+  end
+
 end

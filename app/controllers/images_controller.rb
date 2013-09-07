@@ -1,19 +1,14 @@
 class ImagesController < ApplicationController
 
-  before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment]
+  before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment, :index, :for_user]
   before_filter :set_image, only: [:comment, :comments]
 
   def index
     before = Time.at((params[:before] || Time.now).to_i)
     after = Time.at((params[:after] || 0).to_i)
     images = Image.where("created_at BETWEEN ? AND ?", after, before).order("created_at desc").limit(5)
-    render json: images_json(images)
+    render json: images.as_json(user_id: @user.id)
   end
-
-  def for_user
-    ##TODO : image stream of specific user
-  end
-
 
   def new
     @image = Image.new
@@ -47,7 +42,7 @@ class ImagesController < ApplicationController
   end
 
   def comments
-    render json: comments_json(@image.comments)
+    render json: @image.comments.as_json
   end
 
 
@@ -58,30 +53,6 @@ class ImagesController < ApplicationController
 
   def set_image
     @image = Image.find(params[:id])
-  end
-
-
-  def images_json(images)
-    images.map do |image| 
-      {
-        id: image.id,
-        url: "http://kokavo.com" + image.url.to_s,
-        been_theres_count: image.been_theres.count,
-        comments_count: image.comments.count,
-        comments: comments_json(image.comments.first(3)),
-        been_there?: image.been_theres.where(user_id: @user.id).count > 0,
-        created_at: image.created_at.to_i
-      }
-    end
-  end
-
-  def comments_json(comments)
-    comments.map do |comment|
-      {
-        user: comment.user.as_json,
-        text: comment.text
-      }
-    end
   end
 
 end

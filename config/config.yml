@@ -1,0 +1,7 @@
+development:
+  host: "http://dev.kokavo.com"
+  uploads_dir: "uploads"
+
+production:
+  host: "http://www.kokavo.com"
+  uploads_dir: "/home/deploy/beenthere/uploads"
