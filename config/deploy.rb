@@ -93,7 +93,7 @@ namespace :deploy do
 
   desc "Override default migrate task (by default requires a db roles which we don't have)"
   task :migrate, :roles => :app do
-    run "cd #{latest_release} && rake db:migrate RAILS_ENV=#{rails_env}", once: true
+    run "cd #{latest_release} && bundle exec rake db:migrate RAILS_ENV=#{rails_env}", once: true
   end
   
 end
