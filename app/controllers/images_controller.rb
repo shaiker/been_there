@@ -6,7 +6,7 @@ class ImagesController < ApplicationController
   def index
     before = Time.at((params[:before] || Time.now).to_i)
     after = Time.at((params[:after] || 0).to_i)
-    images = Image.where("created_at BETWEEN ? AND ?", after, before).order("created_at desc").limit(5)
+    images = Image.where("created_at BETWEEN ? AND ?", after, before).order("created_at desc").limit(20)
     render json: images.as_json(user_id: @user.id)
   end
 
