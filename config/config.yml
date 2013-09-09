@@ -4,4 +4,4 @@ development:
 
 production:
   host: "http://www.kokavo.com"
-  uploads_dir: "/uploaded_images"
+  uploads_dir: "/uploads"
