@@ -87,7 +87,7 @@ namespace :deploy do
   task :fail_on_pending_migrations, :roles => :app do
     deployed_with_migrations = !!fetch(:migrate_target, false)
     if !deployed_with_migrations
-      run "cd #{release_path} && rake db:abort_if_pending_migrations RAILS_ENV=#{rails_env}", once: true
+      run "cd #{release_path} && bundle exec rake db:abort_if_pending_migrations RAILS_ENV=#{rails_env}", once: true
     end
   end
 
