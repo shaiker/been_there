@@ -1,4 +1,7 @@
 Kokavo::Application.routes.draw do
+  
+  root to: redirect('http://beenthere.kokavo.com')
+
   resources :users
 
   resources :images do
