@@ -41,8 +41,9 @@ set(:rails_env) { stage }
 
 server "kokavo.com", :app, :web
 
-before 'bundle:install', 'deploy:fail_on_pending_migrations', 'deploy:assets:precompile'
-after  'deploy:restart', 'deploy:cleanup'
+before 'bundle:install', 'deploy:fail_on_pending_migrations'
+after  'deploy:assets:precompile', 'deploy:restart', 'deploy:cleanup'
+after 'deploy:start'
 
 
 namespace :unicorn do
