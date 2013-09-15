@@ -4,8 +4,8 @@ class ImagesController < ApplicationController
   before_filter :set_image, only: [:comment, :comments]
 
   def index
-    before = Time.at((params[:before] || Time.now).to_i)
-    after = Time.at((params[:after] || 0).to_i)
+    before = Time.at((params[:before] || Time.now).to_i - 1)
+    after = Time.at((params[:after] || 0).to_i + 1)
     images = Image.where("created_at BETWEEN ? AND ?", after, before).order("created_at desc").limit(20)
     render json: images.as_json(user_id: @user.id)
   end
