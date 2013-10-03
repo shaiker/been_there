@@ -1,6 +1,6 @@
 class ImagesController < ApplicationController
 
-  before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment, :index, :for_user, :update_caption]
+  before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment, :index, :for_user]
   before_filter :set_image, only: [:comment, :comments, :update_caption]
 
   def index
@@ -21,15 +21,9 @@ class ImagesController < ApplicationController
   end
 
   def update_caption
-    rslt = false
-    if @image.user == @user
-      @image.caption = params[:caption]
-      rslt = @image.save
-      error = @image.errors
-    else
-      error = "unauthorized user trying to update an image caption that is not his own"
-    end
-    render json: { success: rslt, error: error }
+    @image.caption = params[:caption]
+    @image.save
+    render json: { success: true }
   end
 
   def been_there
