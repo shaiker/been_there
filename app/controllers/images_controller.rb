@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
 
-  before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment, :index, :for_user]
-  before_filter :set_image, only: [:comment, :comments]
+  before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment, :index, :for_user, :update_caption]
+  before_filter :set_image, only: [:comment, :comments, :update_caption]
 
   def index
     before = Time.at((params[:before] || Time.now).to_i - 1)
@@ -17,9 +17,20 @@ class ImagesController < ApplicationController
   def create
     image_params = params[:image] || { url: params[:url], caption: params[:caption], user_id: params[:user_id] }  ### Temporary code ###
     @image = Image.create(image_params)
-    render json: { success: true }
+    render json: @image.as_json(user_id: params[:user_id])
   end
 
+  def update_caption
+    rslt = false
+    if @image.user == @user
+      @image.caption = params[:caption]
+      rslt = @image.save
+      error = @image.errors
+    else
+      error = "unauthorized user trying to update an image caption that is not his own"
+    end
+    render json: { success: rslt, error: error }
+  end
 
   def been_there
     Image.find(params[:id]).been_theres.find_or_create_by_user_id(user_id: @user.id)

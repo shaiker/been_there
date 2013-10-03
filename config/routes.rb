@@ -6,6 +6,7 @@ Kokavo::Application.routes.draw do
 
   resources :images do
     member do
+      put 'update_caption'
       get 'been_there'
       get 'unbeen_there'
       get 'view'
@@ -24,6 +25,8 @@ Kokavo::Application.routes.draw do
     end
   end
 
+  resources :comments do
+  end
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
