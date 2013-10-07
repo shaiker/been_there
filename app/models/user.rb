@@ -4,6 +4,7 @@ class User < ActiveRecord::Base
 
   def as_json(options = nil)
     {
+      id: id,
       name: name,
       image: image
     }.as_json(options)
