@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
 
   before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment, :index, :for_user]
-  before_filter :set_image, only: [:comment, :comments, :update_caption]
+  before_filter :set_image, only: [:comment, :comments, :update_caption, :been_there, :view]
 
   def index
     before = Time.at((params[:before] || Time.now).to_i - 1)
@@ -27,7 +27,7 @@ class ImagesController < ApplicationController
   end
 
   def been_there
-    Image.find(params[:id]).been_theres.find_or_create_by_user_id(user_id: @user.id)
+    @image.been_theres.find_or_create_by_user_id(user_id: @user.id)
     render json: { success: true }
   end
 
@@ -37,7 +37,7 @@ class ImagesController < ApplicationController
   end
 
   def view
-    Image.find(params[:id]).views.find_or_create_by_user_id(user_id: @user.id)
+    @image.views.find_or_create_by_user_id(user_id: @user.id)
     render json: { success: true }
   end
 

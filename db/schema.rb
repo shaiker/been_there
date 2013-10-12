@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130907103007) do
+ActiveRecord::Schema.define(:version => 20131012101533) do
 
   create_table "been_theres", :force => true do |t|
     t.integer  "image_id"
@@ -45,8 +45,17 @@ ActiveRecord::Schema.define(:version => 20130907103007) do
 
   add_index "images", ["user_id"], :name => "index_images_on_user_id"
 
+  create_table "notifications", :force => true do |t|
+    t.integer  "image_id"
+    t.integer  "generated_by_user_id"
+    t.integer  "type"
+    t.boolean  "digested",             :default => false
+    t.boolean  "opened",               :default => false
+    t.datetime "created_at",                              :null => false
+    t.datetime "updated_at",                              :null => false
+  end
+
   create_table "users", :force => true do |t|
-    t.string   "uid",                                                                            :null => false
     t.datetime "created_at",                                                                     :null => false
     t.datetime "updated_at",                                                                     :null => false
     t.string   "name",            :default => "Anonymous"
@@ -54,7 +63,5 @@ ActiveRecord::Schema.define(:version => 20130907103007) do
     t.string   "fb_uid"
     t.string   "fb_access_token"
   end
-
-  add_index "users", ["uid"], :name => "index_users_on_uid", :unique => true
 
 end

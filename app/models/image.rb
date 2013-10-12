@@ -5,6 +5,7 @@ class Image < ActiveRecord::Base
   has_many :views, class_name: 'ImageView'
   has_many :been_theres
   has_many :comments
+  has_many :notifications
 
   mount_uploader :url, ImageUploader
   

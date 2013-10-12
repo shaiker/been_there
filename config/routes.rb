@@ -1,5 +1,8 @@
 Kokavo::Application.routes.draw do
   
+  resources :notifications
+
+
   root to: redirect('http://beenthere.kokavo.com')
 
   resources :users
@@ -18,6 +21,7 @@ Kokavo::Application.routes.draw do
   resources :users do
     member do
       get 'images'
+      get 'notifications'
     end
 
     collection do
@@ -26,6 +30,12 @@ Kokavo::Application.routes.draw do
   end
 
   resources :comments do
+  end
+
+  resources :notifications do
+    member do
+      get 'opened'
+    end
   end
 
   # The priority is based upon order of creation:

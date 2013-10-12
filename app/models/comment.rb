@@ -1,5 +1,8 @@
 class Comment < ActiveRecord::Base
   attr_accessible :image_id, :text, :user_id
+
+  include Notifiable
+
   belongs_to :image
   belongs_to :user
 
@@ -11,4 +14,5 @@ class Comment < ActiveRecord::Base
       text: text
     }.as_json(options)
   end
+
 end
