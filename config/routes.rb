@@ -39,6 +39,8 @@ Kokavo::Application.routes.draw do
     end
   end
 
+  match "/send_feedback" => "main#send_feedback"
+
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

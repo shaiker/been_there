@@ -26,7 +26,7 @@ class UsersController < ApplicationController
       end
       @user.fb_access_token = params[:fb_access_token]
       @user.image = "http://graph.facebook.com/#{params[:fb_uid]}/picture?type=square"
-      @user.name = "temp - facebook"
+      @user.name = params[:name] || "Facebook User"
       ##TODO : get real user name
     else
       @user = User.new

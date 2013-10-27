@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131023143830) do
+ActiveRecord::Schema.define(:version => 20131027162316) do
 
   create_table "been_theres", :force => true do |t|
     t.integer  "image_id"
@@ -22,6 +22,13 @@ ActiveRecord::Schema.define(:version => 20131023143830) do
 
   create_table "comments", :force => true do |t|
     t.integer  "image_id"
+    t.integer  "user_id"
+    t.text     "text"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "feedbacks", :force => true do |t|
     t.integer  "user_id"
     t.text     "text"
     t.datetime "created_at", :null => false
@@ -53,7 +60,7 @@ ActiveRecord::Schema.define(:version => 20131023143830) do
     t.boolean  "opened",               :default => false
     t.datetime "created_at",                              :null => false
     t.datetime "updated_at",                              :null => false
-    t.integer  "was_pushed"
+    t.integer  "push_type"
   end
 
   create_table "users", :force => true do |t|
