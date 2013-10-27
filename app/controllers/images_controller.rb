@@ -1,7 +1,7 @@
 class ImagesController < ApplicationController
 
   before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment, :index, :for_user]
-  before_filter :set_image, only: [:comment, :comments, :update_caption, :been_there, :view]
+  before_filter :set_image, only: [:comment, :comments, :update_caption, :been_there, :view, :destroy]
 
   def index
     before = Time.at((params[:before] || Time.now).to_i - 1)
@@ -50,6 +50,9 @@ class ImagesController < ApplicationController
     render json: @image.comments.as_json
   end
 
+  def destroy
+    render json: { success: !!@image.destroy }
+  end
 
   private
   def set_user
