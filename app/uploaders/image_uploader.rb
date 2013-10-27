@@ -22,7 +22,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   def is_landscape?(picture)
-    image = MiniMagick::Image.open(picture)
+    image = MiniMagick::Image.open(picture.path)
     image[:width] >= image[:height]
   end  
 
