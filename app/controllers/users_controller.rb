@@ -25,7 +25,7 @@ class UsersController < ApplicationController
         @user = User.find_or_initialize_by_fb_uid(params[:fb_uid])
       end
       @user.fb_access_token = params[:fb_access_token]
-      @user.image = "http://graph.facebook.com/#{params[:fb_uid]}/picture?type=square"
+      @user.image = "http://graph.facebook.com/#{params[:fb_uid]}/picture?width=100&height=100"
       @user.name = params[:name] || "Facebook User"
       ##TODO : get real user name
     else
