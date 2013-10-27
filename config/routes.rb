@@ -22,6 +22,7 @@ Kokavo::Application.routes.draw do
     member do
       get 'images'
       get 'notifications'
+      get 'digest_notifications'
     end
 
     collection do

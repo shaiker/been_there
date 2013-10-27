@@ -13,7 +13,7 @@ class Image < ActiveRecord::Base
   def as_json(options = nil)
     {
       id: id,
-      url: APP_CONFIG['host'] + url.to_s,
+      url: APP_CONFIG['host'] + self.normal.url.to_s,
       caption: caption,
       been_theres_count: been_theres.count,
       comments_count: comments.count,

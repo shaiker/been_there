@@ -1,13 +1,15 @@
 class UsersController < ApplicationController
-  before_filter :set_user, only: [:notifications, :images]
+  before_filter :set_user, only: [:notifications, :digest_notifications, :images]
 
   NOTIFICATIONS_COUNT = 10
   def notifications
-    new_notifications = @user.notifications.where(digested: false)
-    old_notifications = new_notifications.size < NOTIFICATIONS_COUNT ? @user.notifications.where(digested: true).order("id desc").limit(NOTIFICATIONS_COUNT - new_notifications.size) : []
-    response = (new_notifications + old_notifications).sort_by(&:created_at).to_json
-    new_notifications.update_all(digested: true)
-    render json: response
+    render json: get_notifications.to_json
+  end
+
+  def digest_notifications
+    notifs = get_notifications
+    @user.notifications.where(digested: false).update_all(digested: true)    
+    render json: notifs.to_json
   end
 
   def images
@@ -38,6 +40,12 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  def get_notifications
+    new_notifications = @user.notifications.where(digested: false)
+    old_notifications = new_notifications.size < NOTIFICATIONS_COUNT ? @user.notifications.where(digested: true).order("id desc").limit(NOTIFICATIONS_COUNT - new_notifications.size) : []
+    response = (new_notifications + old_notifications).sort_by(&:created_at).reverse
+    # new_notifications.update_all(digested: true)    
+  end
 
   # # GET /users
   # # GET /users.json

@@ -10,7 +10,7 @@ gem 'carrierwave'
 gem 'debugger'
 gem 'god'
 gem 'unicorn'
-
+gem 'mini_magick'
 
 group :development do
   gem 'capistrano-rails'
