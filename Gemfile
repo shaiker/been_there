@@ -11,7 +11,7 @@ gem 'debugger'
 gem 'god'
 gem 'unicorn'
 gem 'mini_magick'
-
+gem 'fog'
 
 group :development do
   gem 'capistrano-rails'
