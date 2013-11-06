@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(:version => 20131027162316) do
   create_table "users", :force => true do |t|
     t.datetime "created_at",                                                                     :null => false
     t.datetime "updated_at",                                                                     :null => false
-    t.string   "name",            :default => "Anonymous"
+    t.string   "name",            :default => "Been There User"
     t.string   "image",           :default => "http://dev.kokavo.com/assets/anonymous_user.png"
     t.string   "fb_uid"
     t.string   "fb_access_token"
