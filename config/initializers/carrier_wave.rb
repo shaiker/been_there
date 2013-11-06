@@ -14,10 +14,10 @@ CarrierWave.configure do |config|
 
   config.storage = :fog
 
-  # begin
-  #   config.fog_host     = S3_CONFIG["asset_host"]
-  # rescue
-  #   config.asset_host   = S3_CONFIG["asset_host"]
-  # end
+  begin
+    config.fog_host     = S3_CONFIG["asset_host"]
+  rescue
+    config.asset_host   = S3_CONFIG["asset_host"]
+  end
 end
 
