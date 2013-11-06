@@ -12,7 +12,7 @@ CarrierWave.configure do |config|
 
   config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}
 
-  config.storage = :fog
+  # config.storage = :fog
 
   # begin
   #   config.fog_host     = S3_CONFIG["asset_host"]
