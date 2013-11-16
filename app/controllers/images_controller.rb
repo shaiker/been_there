@@ -1,13 +1,17 @@
 class ImagesController < ApplicationController
 
-  before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment, :index, :for_user]
-  before_filter :set_image, only: [:comment, :comments, :update_caption, :been_there, :view, :destroy]
+  before_filter :set_user, only: [:been_there, :unbeen_there, :view, :comment, :index, :for_user, :show]
+  before_filter :set_image, only: [:comment, :comments, :update_caption, :been_there, :view, :destroy, :show]
 
   def index
     before = Time.at((params[:before] || Time.now).to_i - 1)
     after = Time.at((params[:after] || 0).to_i + 1)
     images = Image.where("created_at BETWEEN ? AND ?", after, before).order("created_at desc").limit(20)
     render json: images.as_json(user_id: @user.id)
+  end
+
+  def show
+    render json: @image.as_json(user_id: @user.id)
   end
 
   def new
