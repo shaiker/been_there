@@ -3,13 +3,13 @@ class UsersController < ApplicationController
 
   NOTIFICATIONS_COUNT = 10
   def notifications
-    render json: get_notifications.to_json
+    render json: get_notifications.as_json(user_id: @user.id)
   end
 
   def digest_notifications
     notifs = get_notifications
     @user.notifications.where(digested: false).update_all(digested: true)    
-    render json: notifs.to_json
+    render json: notifs.as_json(user_id: @user.id)
   end
 
   def images
