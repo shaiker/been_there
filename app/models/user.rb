@@ -16,7 +16,7 @@ class User < ActiveRecord::Base
   end
 
   def anonymous?
-    fb_uid.present?
+    fb_uid.blank?
   end
 
 end
