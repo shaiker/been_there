@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Been There">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="images/ico/favicon.ico">
+
+    <title>Been There</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="assets/css/bootstrap.css" rel="stylesheet">
+
+    <!-- Custom styles for this template -->
+	
+    <link href="css/style.css" rel="stylesheet">
+
+	
+	<!-- color schema -->
+	<link href="css/color-1.css" rel="stylesheet" id="layoutstyle">	
+	
+	<link rel="stylesheet" href="lib/font-awesome/css/font-awesome.min.css">
+
+	<!-- google font for title -->
+	<link href="css/google-font-1.css" rel="stylesheet" id="googlefont">
+	
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="js/html5shiv.js"></script>
+      <script src="js/respond.min.js"></script>
+    <![endif]-->
+	
+	<!-- AppShowcase -->
+	<link rel="stylesheet" type="text/css" href="lib/AppShowcaseV2/css/component3.css" />
+	<script src="lib/AppShowcase/js/modernizr.custom.js"></script>		
+	
+  </head>
+
+  <body>
+
+	<div id="intro">
+		<div class="container">
+			<div class="col-md-7 col-sm-6">
+				<div class="logo">
+					<img src="images/logo.png" alt="image">
+				</div>
+				
+				<div class="introtext">
+					<h1>The app for parents</h1>
+
+					<p>Parenthood is an amazing thing, which sometimes can also be difficult...<br>
+                    Been There is an iPhone app for parents, designed to share those bittersweet situations every parent is familiar with. Find out that you are not alone, and that other parents have been there, too. Browse other parent's photos, indicate you have been there, and upload your own photos.</p>
+					
+					<div class="appstorebtn">
+						<a href="http://app.appsflyer.com/id691066068?pid=webpage"><img src="images/appstore.png" alt="image"></a>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-5 col-sm-6">
+				<div class="introimg">
+					<img src="images/iphone.png" alt="image">
+				</div>
+			</div>	
+		</div>
+	</div>
+	 
+	
+	<!-- Screenshots -->	
+    
+    
+    	<div class="third">
+		<div class="container subs">
+		  <div class="col-md-12 text-center">
+			<h2 class="quotes"><span>"Good to know many parents are going through the same things."</span></h2>
+			<h2 class="quotes"><span>"Makes me feel good about myself"</span></h2>
+			<h2 class="quotes"><span>"I feel I am not alone..."</span></h2>
+			<h2 class="quotes"><span>"Makes me feel good about myself"</span></h2>
+			<h2 class="quotes"><span>"Very amusing!"</span></h2>
+			<h2 class="quotes"><span>"Intuitive, smooth and cool."</span></h2>
+			<h2 class="quotes"><span>"It can ease the pressure of being a parent"</span></h2>
+			<h2 class="quotes"><span>"I definitely been through all these situations."</span></h2>
+			<h2 class="quotes"><span>"I laughed and empathized – went through several of these"</span></h2>
+			<h2 class="quotes"><span>"Been There resonates with every parent."</span></h2>
+		  </div>
+		</div>
+	</div>
+	<div class="fourth">
+		<div class="fourth-inner">
+			<div class="container">
+				<div class="col-md-12">
+				  	<div id="ac-wrapper" class="ac-wrapper">
+						<div class="ac-device">
+							<a href="#"><img src="images/appScreensV2/screen1.jpg" alt="image"/></a>
+<!--							<h3 class="ac-title">Click Been There to indicate you have been there too!</h3>-->
+							<nav>
+								<span class="larrow"></span>
+								<span class="rarrow"></span>
+							</nav>
+						</div>
+						<div class="ac-grid">
+							<a href="#"><img src="images/appScreensV2/screen1.jpg" alt="image"/></a>
+							<a href="#"><img src="images/appScreensV2/screen2.jpg" alt="image"/></a>
+							<a href="#"><img src="images/appScreensV2/screen3.jpg" alt="image"/></a>
+						</div>
+						
+						
+					</div>	
+					
+				</div>
+				
+			</div>	
+		</div>	
+	</div>	
+					
+ 
+
+	<!-- footer  -->
+	<div class="footer">
+		<div class="container">
+			<div class="col-md-8">
+				<a target="_new" href="https://www.facebook.com/webeenthere">Join Our Facebook Page</a>|
+				<a target="_new" href="mailto:beentherefeedback@gmail.com">Contact Us</a>|
+				<a target="_new" href="http://app.appsflyer.com/id691066068?pid=webpage">Download the App!</a>
+				<p>&copy; 2013 Been There</p>
+
+
+			</div>
+			<div class="col-md-4 text-right">
+				<ul class="socialico">	
+					<li class="fb"><a target="_new" href="https://www.facebook.com/webeenthere"></a></li>
+					
+<!--					<li class="tw"><a href="#"></a></li>
+					<li class="dr"><a href="#"></a></li>
+					<li class="in"><a href="#"></a></li>-->
+				</ul>
+			</div>			
+		</div>
+	</div>
+	
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+		
+	<script src="lib/AppShowcase/js/appshowcase_3.js"></script>
+	<script>
+		$(function() {
+			AppShowcase.init();
+		});
+	</script>
+	
+	<script src="js/inviewport.jquery.js"></script>
+	
+	<script>
+	
+	(function () {
+		"use strict";		
+		
+		 /*global $ */ 
+		 
+		  var quotes = $(".quotes");
+    var quoteIndex = -1;
+    
+    function showNextQuote() {
+        ++quoteIndex;
+        quotes.eq(quoteIndex % quotes.length)
+            .fadeIn(2000)
+            .delay(2000)
+            .fadeOut(2000, showNextQuote);
+    }
+    
+    showNextQuote();
+		 
+		$('.introtext').inviewport({
+			threshold: 100, 
+			className: 'introtext-animate'
+		});			
+
+		$('.introimg').inviewport({
+			threshold: 100, 
+			className: 'introimg-animate'
+		});			
+		 
+		$('.cir').inviewport({
+			threshold: 100, 
+			className: 'cir-animate'
+		});	
+
+		$('.h2title').inviewport({
+			threshold: 100, 
+			className: 'h2title-animate'
+		});
+		
+		$('.subs').inviewport({
+			threshold: 100, 
+			className: 'subs-animate'
+		});
+		
+	}());		
+	</script>
+	
+  </body>
+</html>

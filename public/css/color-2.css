@@ -1,0 +1,32 @@
+#intro{
+	background:url(../images/intro2.jpg) no-repeat fixed 50% 0 / cover;
+}
+
+.appstorebtn:hover{
+	background:#FF9B83;
+}
+
+.fa{
+	color:#FF9B83;
+}
+
+.third{
+	/* background:#FF9B83; */
+	background-color: rgba(255, 155, 131, 0.8);
+}
+
+.larrow{
+	background: #FF9B83 url(../images/arrow-left.png);
+
+}
+.rarrow{
+	background: #FF9B83 url(../images/arrow-right.png);
+}
+
+form input[type="submit"] {
+    background: none repeat scroll 0 0 #FF9B83;
+}
+
+.subscribe{
+	background:#FF9B83;
+}

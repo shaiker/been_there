@@ -1,0 +1,44 @@
+#intro{
+	background:url(../images/intro1.jpg) no-repeat fixed 50% 0 / cover;
+}
+
+.appstorebtn:hover{
+	background:#123241;
+}
+
+.fa{
+	color:#123241;
+}
+
+.third{
+	/* background:#123241; */
+	background-color: rgba(18, 50, 65, 0.8);
+}
+
+.larrow{
+	background: #123241 url(../images/arrow-left.png);
+
+}
+.rarrow{
+	background: #123241 url(../images/arrow-right.png);
+}
+
+form input[type="submit"] {
+    background: none repeat scroll 0 0 #123241;
+}
+
+.subscribe{
+	background:none;
+}
+
+.subscribe h2 {
+    color: #123241;
+}
+
+.subscribe form input{
+	border:1px solid #123241;
+}
+
+.subscribe form input[type="submit"]{
+	border: 2px solid #123241;
+}

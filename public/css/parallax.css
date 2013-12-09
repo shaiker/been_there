@@ -1,0 +1,14 @@
+body{
+	background:url(../images/pattern.png);
+}
+
+#bg{
+	background:url(../images/bg.jpg) 50% 0 no-repeat fixed;
+	padding: 0;
+	background-size:cover;
+}
+
+.third{
+	padding:60px 0;
+	color:#fff;
+}

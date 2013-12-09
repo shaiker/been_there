@@ -1,0 +1,20 @@
+/* Google Fonts */
+@import url(http://fonts.googleapis.com/css?family=Lobster);
+@import url(http://fonts.googleapis.com/css?family=Cabin);
+
+body {
+	font-family: 'Cabin', arial, serif;
+}
+
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6{
+	font-family: 'Cabin', arial, serif;
+}
+
+#intro h1{
+	font-family:'Lobster', arial, serif;
+	text-transform: capitalize;
+}
+
+#intro p{
+	font-family:'Lobster', arial, serif;
+}
