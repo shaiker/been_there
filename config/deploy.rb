@@ -13,7 +13,7 @@ set :rvm_ruby_string, "1.9.3-p327"
 # -------------------------------------------
 # Stages settings - allows cap [stage] deploy
 # -------------------------------------------
-set :stages, %w(production)
+set :stages, %w(production qa)
 set :default_stage, :production
 require 'capistrano/ext/multistage'
 
@@ -38,8 +38,6 @@ set(:rails_env) { stage }
 # -------------------------------------------
 
 
-
-server "kokavo.com", :app, :web
 
 before 'deploy:assets:precompile', 'bundle:install', 'deploy:fail_on_pending_migrations'
 after  'deploy:assets:precompile', 'deploy:restart', 'deploy:cleanup'
