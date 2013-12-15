@@ -1,12 +1,9 @@
 Kokavo::Application.routes.draw do
   
-  resources :notifications
 
+  root to: redirect('http://kokavo.com')
 
-  root to: redirect('http://beenthere.kokavo.com')
-
-  resources :users
-
+  
   resources :images do
     member do
       put 'update_caption'
@@ -27,6 +24,7 @@ Kokavo::Application.routes.draw do
 
     collection do
       post 'signup'
+      post 'update_access_token'
     end
   end
 
@@ -38,6 +36,13 @@ Kokavo::Application.routes.draw do
       get 'opened'
     end
   end
+
+  resources :tips do
+    collection do
+      get 'get_tip'
+    end
+  end
+
 
   match "/send_feedback" => "main#send_feedback"
 

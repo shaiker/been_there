@@ -30,6 +30,10 @@ class ImagesController < ApplicationController
     render json: { success: true }
   end
 
+  def update
+    render json: { success: true }
+  end
+
   def been_there
     @image.been_theres.find_or_create_by_user_id(user_id: @user.id)
     render json: { success: true }

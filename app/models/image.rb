@@ -18,7 +18,9 @@ class Image < ActiveRecord::Base
       been_theres_count: been_theres.count,
       comments_count: comments.count,
       been_there?: been_theres.where(user_id: options[:user_id]).count > 0,
-      created_at: created_at.to_i
+      created_at: created_at.to_i,
+      user: user.as_json(options),
+      categories: ["eat", "sleep", "rave", "repeat"]
     }.as_json(options)
   end
 

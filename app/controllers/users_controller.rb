@@ -16,6 +16,14 @@ class UsersController < ApplicationController
     render json: @user.images.as_json(user_id: @user.id)
   end
 
+  def has_friends?
+    render text: "true"
+  end
+
+  def update_access_token
+    render json: { success: true }
+  end
+
   def signup
     if params[:fb_uid].present?
       if params[:anonymous_id].present?

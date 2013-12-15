@@ -11,11 +11,17 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131027162316) do
+ActiveRecord::Schema.define(:version => 20131215180847) do
 
   create_table "been_theres", :force => true do |t|
     t.integer  "image_id"
     t.integer  "user_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
@@ -63,11 +69,21 @@ ActiveRecord::Schema.define(:version => 20131027162316) do
     t.integer  "push_type"
   end
 
+  create_table "tips", :force => true do |t|
+    t.string   "title"
+    t.string   "text"
+    t.integer  "category_id"
+    t.integer  "image_id"
+    t.string   "url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
   create_table "users", :force => true do |t|
     t.datetime "created_at",                                                                     :null => false
     t.datetime "updated_at",                                                                     :null => false
     t.string   "name",            :default => "Been There User"
-    t.string   "image",           :default => "http://dev.kokavo.com/assets/anonymous_user.png"
+    t.string   "image",           :default => "http://www.kokavo.com/assets/anonymous_user.png"
     t.string   "fb_uid"
     t.string   "fb_access_token"
   end
