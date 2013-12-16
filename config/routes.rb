@@ -43,6 +43,9 @@ Kokavo::Application.routes.draw do
     end
   end
 
+  resources :categories do
+  end
+
 
   match "/send_feedback" => "main#send_feedback"
 
