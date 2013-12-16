@@ -1,7 +1,7 @@
 RAILS_ROOT = "/home/deploy/beenthere/current"
 rails_env = ENV['RAILS_ENV'] || 'production'
 
-rails_env == 'production' ? 6 : 2
+num_workers = rails_env == 'production' ? 6 : 2
 worker_processes num_workers
 
 working_directory RAILS_ROOT

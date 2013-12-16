@@ -11,7 +11,7 @@
 
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.css" rel="stylesheet">
-    
+
     <!-- Custom styles for this template -->
 	
     <link href="css/style.css" rel="stylesheet">
@@ -47,7 +47,7 @@
 				</div>
 				
 				<div class="introtext">
-					<h1>The app for parents</h1>
+					<h1>THE APP FOR PARENTS</h1>
 
 					<p>Parenthood is an amazing thing, which sometimes can also be difficult...<br>
                     Been There is an iPhone app for parents, designed to share those bittersweet situations every parent is familiar with. Find out that you are not alone, and that other parents have been there, too. Browse other parent's photos, indicate you have been there, and upload your own photos.</p>
@@ -75,12 +75,11 @@
 			<h2 class="quotes"><span>"Good to know many parents are going through the same things."</span></h2>
 			<h2 class="quotes"><span>"Makes me feel good about myself"</span></h2>
 			<h2 class="quotes"><span>"I feel I am not alone..."</span></h2>
-			<h2 class="quotes"><span>"Makes me feel good about myself"</span></h2>
 			<h2 class="quotes"><span>"Very amusing!"</span></h2>
 			<h2 class="quotes"><span>"Intuitive, smooth and cool."</span></h2>
 			<h2 class="quotes"><span>"It can ease the pressure of being a parent"</span></h2>
 			<h2 class="quotes"><span>"I definitely been through all these situations."</span></h2>
-			<h2 class="quotes"><span>"I laughed and empathized – went through several of these"</span></h2>
+			<h2 class="quotes"><span>"I laughed and empathised - went through several of these"</span></h2>
 			<h2 class="quotes"><span>"Been There resonates with every parent."</span></h2>
 		  </div>
 		</div>
@@ -112,7 +111,16 @@
 			</div>	
 		</div>	
 	</div>	
-					
+		
+		
+	<div class="forMobile">
+		<div>	
+			<!--<img  class="introimgForMobile" src="images/appScreensV2/screen1.jpg" alt="image">-->
+			<h2 class="quotes2"><span><img  class="introimgForMobile" src="images/appScreensV2/screen1.jpg" alt="image"></span></h2>
+			<h2 class="quotes2"><span><img  class="introimgForMobile" src="images/appScreensV2/screen2.jpg" alt="image"></span></h2>
+			<h2 class="quotes2"><span><img  class="introimgForMobile" src="images/appScreensV2/screen3.jpg" alt="image"></span></h2>						
+		</div>
+	</div>						
  
 
 	<!-- footer  -->
@@ -161,17 +169,32 @@
 		 /*global $ */ 
 		 
 		  var quotes = $(".quotes");
-    var quoteIndex = -1;
+   		 var quoteIndex = -1;
     
     function showNextQuote() {
         ++quoteIndex;
         quotes.eq(quoteIndex % quotes.length)
-            .fadeIn(2000)
-            .delay(2000)
-            .fadeOut(2000, showNextQuote);
+            .fadeIn(500)
+            .delay(3000)
+            .fadeOut(500, showNextQuote);
     }
     
     showNextQuote();
+		
+		  var quotes2 = $(".quotes2");
+   		 var quoteIndex2 = -1;
+    
+    function showNextQuote2() {
+        ++quoteIndex2;
+        quotes2.eq(quoteIndex2 % quotes2.length)
+            .fadeIn(500)
+            .delay(3000)
+            .fadeOut(500, showNextQuote2);
+    }
+    
+    showNextQuote2();
+		
+		
 		 
 		$('.introtext').inviewport({
 			threshold: 100, 

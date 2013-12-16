@@ -14,6 +14,7 @@ Footer, Footer Bottom, Social icons
 Custom Media Query
 
 */
+body, html { overflow-x:hidden; }
 
 
 /* body, heading, paragraph */
@@ -44,10 +45,21 @@ p {
     margin: 0 0 5px 0!important;
 }
 
-/* Logo */
+.forMobile
+{
+	display:none;
+}
 
+
+.introimgForMobile
+{
+	display:none;
+}
+
+/* Logo */
 .logo{
-	padding:60px 0 40px;
+	width:110px;
+	height:136px;
 }
 
 /* Intro */
@@ -369,27 +381,53 @@ form input[type="submit"] {
 /* Custom Media Query */
 
 @media (max-width: 767px) {
+.logo
+{
+	padding-top:10px;
+	}
+ 
+#intro{
+	color:white;
+	height: 450px;
+	margin: 0 auto;
+	background-size:cover;
+	padding:0;
+}
 
-	.introimg{
+	.introimg,.fourth,.socialico{
 		display:none;
 	}
 	
+	#intro p{
+	color: white;
+	font-size: 14px;
+	line-height:18px;
+	padding-bottom:10px;
+
+
+}
+	
+	h2 span{
+	font-size:14px;
+	line-height:18px;
+	display:block;
+	}
+
 	#intro h1{
-		font-size:36px;
-		line-height:48px;
+		font-size:16px;
+		line-height:22px;		
+
+		margin-top:10px;
 	}	
 	
 	h1 {
-		font-size: 32px;	
+		font-size: 16px;	
 	}
 	
 	.ac-wrapper{
 		padding: 0 20px 150px!important;
 	}
 	
-	.ac-wrapper p{	
-		display:none;
-	}
 	
 	.subscribe h2{
 		text-align:center;
@@ -399,6 +437,22 @@ form input[type="submit"] {
 	.text-right{
 		text-align:center;
 	}
+		
+	.forMobile
+	{
+		display:block;
+	}
+
+
+	.introimgForMobile
+	{
+		padding-top:10px;
+		display:block;
+		width:100%;
+
+}
+
 }
 
 .quotes {display: none;}
+.quotes2 {display: none;}
