@@ -7,6 +7,7 @@ class ImagesController < ApplicationController
     before = Time.at((params[:before] || Time.now).to_i - 1)
     after = Time.at((params[:after] || 0).to_i + 1)
     images = Image.where("created_at BETWEEN ? AND ?", after, before).order("created_at desc").limit(20)
+    images = images.of_friends(@user) if params[:friends] == "all"
     render json: images.as_json(user_id: @user.id)
   end
 

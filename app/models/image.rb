@@ -6,6 +6,9 @@ class Image < ActiveRecord::Base
   has_many :been_theres
   has_many :comments
   has_many :notifications
+  # has_many :categories, through: :image_categories
+
+  scope :of_friends, lambda { |user| where(user_id: user.fb_friends) }
 
   mount_uploader :url, ImageUploader
   
