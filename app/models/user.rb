@@ -24,10 +24,14 @@ class User < ActiveRecord::Base
 
   def update_fb_friends
     if fb_uid.present?
-      graph = Koala::Facebook::API.new(fb_access_token)
-      friends = graph.get_connections("me", "friends")
-      friends_fb_ids = friends.map { |friend| friend["id"] }
-      self.fb_friends = User.where(fb_uid: friends_fb_ids).map(&:id)
+      begin
+        graph = Koala::Facebook::API.new(fb_access_token)
+        friends = graph.get_connections("me", "friends")
+        friends_fb_ids = friends.map { |friend| friend["id"] }
+        self.fb_friends = User.where(fb_uid: friends_fb_ids).map(&:id)
+      rescue => e
+        self.errors[:fb_friends] = "failed to update fb friends for uid #{self.fb_uid}. #{e.message}"
+      end
     end
   end
 

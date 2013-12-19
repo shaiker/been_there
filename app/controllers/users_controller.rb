@@ -21,7 +21,8 @@ class UsersController < ApplicationController
   end
 
   def update_access_token
-    render json: { success: true }
+    user = User.find_by_fb_uid(params[:fb_uid])
+    render json: { success: user.present? && user.update_attribute(:fb_access_token, params[:fb_access_token]) }
   end
 
   def signup
@@ -39,8 +40,7 @@ class UsersController < ApplicationController
     else
       @user = User.new
     end
-    @user.save
-    render json: { user_id: @user.id }
+    render json: { success: @user.save!, user_id: @user.id, errors: @user.errors }
   end
 
   private
