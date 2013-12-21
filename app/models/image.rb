@@ -6,7 +6,8 @@ class Image < ActiveRecord::Base
   has_many :been_theres
   has_many :comments
   has_many :notifications
-  # has_many :categories, through: :image_categories
+  has_many :image_categories
+  has_many :categories, through: :image_categories
 
   scope :of_friends, lambda { |user| where(user_id: user.fb_friends) }
 
@@ -23,7 +24,7 @@ class Image < ActiveRecord::Base
       been_there?: been_theres.where(user_id: options[:user_id]).count > 0,
       created_at: created_at.to_i,
       user: user.as_json(options),
-      categories: ["eat", "sleep", "rave", "repeat"]
+      categories: categories.map(&:name)
     }.as_json(options)
   end
 

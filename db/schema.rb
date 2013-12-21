@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131217174503) do
+ActiveRecord::Schema.define(:version => 20131221155820) do
 
   create_table "been_theres", :force => true do |t|
     t.integer  "image_id"
@@ -25,6 +25,8 @@ ActiveRecord::Schema.define(:version => 20131217174503) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
 
   create_table "comments", :force => true do |t|
     t.integer  "image_id"
@@ -40,6 +42,16 @@ ActiveRecord::Schema.define(:version => 20131217174503) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "image_categories", :force => true do |t|
+    t.integer  "image_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "image_categories", ["category_id"], :name => "index_image_categories_on_category_id"
+  add_index "image_categories", ["image_id"], :name => "index_image_categories_on_image_id"
 
   create_table "image_views", :force => true do |t|
     t.integer  "image_id"
@@ -86,7 +98,7 @@ ActiveRecord::Schema.define(:version => 20131217174503) do
     t.string   "image",           :default => "http://www.kokavo.com/assets/anonymous_user.png"
     t.string   "fb_uid"
     t.string   "fb_access_token"
-    t.text     "fb_friends_uids"
+    t.text     "fb_friends"
   end
 
   add_index "users", ["fb_uid"], :name => "index_users_on_fb_uid"
