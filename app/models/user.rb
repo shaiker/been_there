@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :images
   has_many :notifications, through: :images
+  has_many :been_theres
   serialize :fb_friends
 
   before_create :update_fb_friends

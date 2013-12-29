@@ -9,6 +9,7 @@ Kokavo::Application.routes.draw do
       put 'update_caption'
       get 'been_there'
       get 'unbeen_there'
+      get 'been_there_users'
       get 'view'
       post 'comment'
       get 'comments'

@@ -24,7 +24,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    image_params = params[:image] || { url: params[:url], caption: params[:caption], user_id: params[:user_id], params[:categories] }  ### Temporary code ###
+    image_params = params[:image] || { url: params[:url], caption: params[:caption], user_id: params[:user_id], categories: params[:categories] }  ### Temporary code ###
     @image = Image.create(image_params)
     render json: @image.as_json(user_id: params[:user_id])
   end
@@ -45,6 +45,10 @@ class ImagesController < ApplicationController
   def been_there
     @image.been_theres.find_or_create_by_user_id(user_id: @user.id)
     render json: { success: true }
+  end
+
+  def been_there_users
+    render json: User.includes(:been_theres).where(been_theres: { image_id: params[:id] })
   end
 
   def unbeen_there
