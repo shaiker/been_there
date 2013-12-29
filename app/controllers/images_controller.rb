@@ -24,7 +24,7 @@ class ImagesController < ApplicationController
   end
 
   def create
-    image_params = params[:image] || { url: params[:url], caption: params[:caption], user_id: params[:user_id] }  ### Temporary code ###
+    image_params = params[:image] || { url: params[:url], caption: params[:caption], user_id: params[:user_id], params[:categories] }  ### Temporary code ###
     @image = Image.create(image_params)
     render json: @image.as_json(user_id: params[:user_id])
   end
@@ -36,9 +36,8 @@ class ImagesController < ApplicationController
   end
 
   def update
-    Category.create_non_existing(@categories_names)
     @image.caption = params[:caption]
-    @image.categories = Category.where(name: @categories_names) if @categories_names.present?
+    @image.categories = @categories_names if @categories_names.present?
 
     render json: { success: @image.save!, errors: (@image.errors if @image.errors.any?) }
   end

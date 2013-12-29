@@ -1,5 +1,5 @@
 class Image < ActiveRecord::Base
-  attr_accessible :url, :caption, :user_id
+  attr_accessible :url, :caption, :user_id, :categories
 
   belongs_to :user
   has_many :views, class_name: 'ImageView'
@@ -26,6 +26,16 @@ class Image < ActiveRecord::Base
       user: user.as_json(options),
       categories: categories.map(&:name)
     }.as_json(options)
+  end
+
+  def categories=(cats)
+    cats = cats.present? ? [*cats] : []
+    if cats.first.class.name == "String"
+      Category.create_non_existing(cats)
+      self.categories = Category.where(name: cats)
+    else
+      super(cats)
+    end
   end
 
 end
