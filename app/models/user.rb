@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   has_many :follower_followships, class_name: "Followship", foreign_key: :followee_id, :dependent => :destroy
   has_many :followers, :class_name => "User", through: :follower_followships
-  has_many :followee_followships, class_name: "Followship", foreign_key: :follower_id, :conditions => ['followee_id > ?', 0], :dependent => :destroy
+  has_many :followee_followships, class_name: "Followship", foreign_key: :follower_id, :dependent => :destroy
   has_many :followees, :class_name => "User", through: :followee_followships
 
   before_create :update_fb_friends
