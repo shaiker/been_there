@@ -21,6 +21,8 @@ Kokavo::Application.routes.draw do
       get 'images'
       get 'notifications'
       get 'digest_notifications'
+      get 'follow'
+      get 'unfollow'
     end
 
     collection do

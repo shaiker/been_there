@@ -3,7 +3,11 @@ class User < ActiveRecord::Base
   has_many :images
   has_many :notifications, through: :images
   has_many :been_theres
-  serialize :fb_friends
+
+  has_many :follower_followships, class_name: "Followship", foreign_key: :followee_id, :dependent => :destroy
+  has_many :followers, :class_name => "User", through: :follower_followships
+  has_many :followee_followships, class_name: "Followship", foreign_key: :follower_id, :dependent => :destroy
+  has_many :followees, :class_name => "User", through: :followee_followships
 
   before_create :update_fb_friends
 
@@ -29,7 +33,7 @@ class User < ActiveRecord::Base
         graph = Koala::Facebook::API.new(fb_access_token)
         friends = graph.get_connections("me", "friends")
         friends_fb_ids = friends.map { |friend| friend["id"] }
-        self.fb_friends = User.where(fb_uid: friends_fb_ids).map(&:id)
+        self.followees = User.where(fb_uid: friends_fb_ids)
       rescue => e
         self.errors[:fb_friends] = "failed to update fb friends for uid #{self.fb_uid}. #{e.message}"
       end

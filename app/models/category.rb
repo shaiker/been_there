@@ -8,6 +8,7 @@ class Category < ActiveRecord::Base
     if categories_names.present?
       existing = Category.where(name: categories_names).map(&:name)
       new_cat = categories_names - existing
+      new_cat.reject! { |cat| cat.blank? }
       Category.create( new_cat.map { |cat| { name: cat } } ) if new_cat.any?
     end
   end
