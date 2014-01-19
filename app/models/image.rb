@@ -18,6 +18,7 @@ class Image < ActiveRecord::Base
     {
       id: id,
       url: self.url.normal.to_s,
+      thumbnail: self.url.thumbnail.to_s,
       caption: caption,
       been_theres_count: been_theres.count,
       comments_count: comments.count,
