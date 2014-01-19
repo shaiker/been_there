@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :set_user, only: [:notifications, :digest_notifications, :images, :follow]
+  before_filter :set_user, only: [:notifications, :digest_notifications, :images, :follow, :get_followees]
 
   NOTIFICATIONS_COUNT = 10
   def notifications
@@ -18,6 +18,10 @@ class UsersController < ApplicationController
 
   def has_friends?
     render text: "true"
+  end
+
+  def get_followees
+    render json: @user.followees.as_json
   end
 
   def update_access_token

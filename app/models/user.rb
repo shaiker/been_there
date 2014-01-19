@@ -12,10 +12,10 @@ class User < ActiveRecord::Base
   before_create :update_fb_friends
 
   def as_json(options = nil)
-    {
+    json = {
       id: id,
       name: name,
-      image: image
+      image: image,
     }.as_json(options)
   end
 
