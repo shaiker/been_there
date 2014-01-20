@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   def follow
     by_user = User.find(params[:by_user])
     if by_user.present?
-      @user.followers << by_user
+      @user.followers << by_user rescue ActiveRecord::RecordNotUnique
       render json: { success: true }
     else
       render json: { success: false, errors: "cannot find user with id #{params[:id]}" }

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131230174801) do
+ActiveRecord::Schema.define(:version => 20140120174435) do
 
   create_table "been_theres", :force => true do |t|
     t.integer  "image_id"
@@ -49,6 +49,10 @@ ActiveRecord::Schema.define(:version => 20131230174801) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "followships", ["followee_id"], :name => "index_followships_on_followee_id"
+  add_index "followships", ["follower_id", "followee_id"], :name => "index_followships_on_follower_id_and_followee_id", :unique => true
+  add_index "followships", ["follower_id"], :name => "index_followships_on_follower_id"
 
   create_table "image_categories", :force => true do |t|
     t.integer  "image_id"
