@@ -24,6 +24,7 @@ Kokavo::Application.routes.draw do
       get 'follow'
       get 'unfollow'
       get 'get_followees'
+      get 'get_followers'
     end
 
     collection do

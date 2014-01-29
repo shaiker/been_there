@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :set_user, only: [:notifications, :digest_notifications, :images, :follow, :get_followees]
+  before_filter :set_user, only: [:notifications, :digest_notifications, :images, :follow, :get_followees, :get_followers]
 
   NOTIFICATIONS_COUNT = 10
   def notifications
@@ -13,7 +13,7 @@ class UsersController < ApplicationController
   end
 
   def images
-    render json: @user.images.as_json(user_id: @user.id)
+    render json: @user.images.order("created_at DESC").as_json(user_id: @user.id)
   end
 
   def has_friends?
@@ -22,6 +22,10 @@ class UsersController < ApplicationController
 
   def get_followees
     render json: @user.followees.as_json
+  end
+
+  def get_followers
+    render json: @user.followers.as_json
   end
 
   def update_access_token
