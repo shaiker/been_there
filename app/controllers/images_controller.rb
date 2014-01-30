@@ -8,7 +8,7 @@ class ImagesController < ApplicationController
   def index
     before = Time.at((params[:before] || Time.now).to_i - 1)
     after = Time.at((params[:after] || 0).to_i + 1)
-    images = Image.where("images.created_at BETWEEN ? AND ?", after, before).order("images.created_at desc").limit(20)
+    images = Image.where("images.created_at BETWEEN ? AND ?", after, before).order("images.created_at desc").limit(500)
     images = images.of_friends(@user) if params[:friends] == "all"
     categories = Category.where(name: @categories_names)
     images = images.includes(:image_categories).where(image_categories: { category_id: categories.map(&:id) }) if categories.present?
