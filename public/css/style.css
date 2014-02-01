@@ -58,6 +58,7 @@ p {
 
 /* Logo */
 .logo{
+	padding-top:10px;
 	width:110px;
 	height:136px;
 }
@@ -69,12 +70,13 @@ p {
 	height: 660px;
 	margin: 0 auto;
 	background-size:cover;
-	padding:0;
+	padding-top:10px;
+	
 }
 
 #intro h1{
 	color:white;
-	padding-top:0px;
+	padding-top:10px;
 	font-size:60px;
 	line-height:96px;
 }
