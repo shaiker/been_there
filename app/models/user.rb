@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :followee_followships, class_name: "Followship", foreign_key: :follower_id, :dependent => :destroy
   has_many :followees, :class_name => "User", through: :followee_followships
 
-  before_create :update_fb_friends
+  before_save :update_fb_friends
 
   def as_json(options = nil)
     json = {
@@ -28,7 +28,7 @@ class User < ActiveRecord::Base
   end
 
   def update_fb_friends
-    if fb_uid.present?
+    if fb_uid.present? && fb_uid_was.blank?
       begin
         graph = Koala::Facebook::API.new(fb_access_token)
         friends = graph.get_connections("me", "friends")
