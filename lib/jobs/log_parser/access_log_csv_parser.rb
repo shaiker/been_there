@@ -20,7 +20,7 @@ class AccessLogCsvParser
 
   def parse(log_file, params_list_file, csv_output)
     @params_list_file = params_list_file
-    @csv_output = (csv_output + "/logs_#{Time.now.strftime("%d-%m-%Y")}.csv").gsub("//", "/")
+    @csv_output = (csv_output + "/logs_#{1.day.ago.strftime("%d-%m-%Y")}.csv").gsub("//", "/")
     lines_hashes = []
     log_lines = File.read(log_file).split("\n")
     log_lines.each do |line|
