@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   # attr_accessible :title, :body
   has_many :images
-  has_many :notifications, through: :images
+  has_many :notifications, through: :images, :dependent => :destroy
   has_many :been_theres
 
   has_many :follower_followships, class_name: "Followship", foreign_key: :followee_id, :dependent => :destroy

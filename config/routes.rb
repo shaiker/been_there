@@ -14,6 +14,10 @@ Kokavo::Application.routes.draw do
       post 'comment'
       get 'comments'
     end
+
+    collection do
+      get 'feed'
+    end
   end
 
   resources :users do
