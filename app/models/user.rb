@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
   has_many :followee_followships, class_name: "Followship", foreign_key: :follower_id, :dependent => :destroy
   has_many :followees, :class_name => "User", through: :followee_followships
 
-  before_save :update_fb_friends
+  after_save :update_fb_friends
 
   def as_json(options = nil)
     json = {
@@ -33,7 +33,10 @@ class User < ActiveRecord::Base
         graph = Koala::Facebook::API.new(fb_access_token)
         friends = graph.get_connections("me", "friends")
         friends_fb_ids = friends.map { |friend| friend["id"] }
-        self.followees = User.where(fb_uid: friends_fb_ids)
+        existing_friends = User.where(fb_uid: friends_fb_ids)
+        self.followees = existing_friends
+
+        existing_friends.each { |friend| Followship.find_or_create_by_followee_id_and_follower_id(followee_id: self.id, follower_id: friend.id) }
       rescue => e
         self.errors[:fb_friends] = "failed to update fb friends for uid #{self.fb_uid}. #{e.message}"
       end
