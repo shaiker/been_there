@@ -23,7 +23,7 @@ class ImagesController < ApplicationController
   def feed
     start = Time.now
     images = Image.includes(:user, :categories)
-                  .select("images.*, COUNT(been_theres.image_id) AS bt_count, COUNT(comments.image_id) AS cmt_count, MAX(CASE WHEN been_theres.user_id = 319 THEN 1 ELSE 0 END) AS is_been_there")
+                  .select("images.*, COUNT(DISTINCT been_theres.id) AS bt_count, COUNT(DISTINCT comments.id) AS cmt_count, MAX(CASE WHEN been_theres.user_id = #{@user.id} THEN 1 ELSE 0 END) AS is_been_there")
                   .joins("LEFT OUTER JOIN been_theres ON images.id = been_theres.image_id LEFT OUTER JOIN comments on images.id = comments.image_id")
                   .group("images.id")    
     if params[:friends] == "all"
