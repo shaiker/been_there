@@ -13,6 +13,8 @@ class Image < ActiveRecord::Base
 
   mount_uploader :url, ImageUploader
 
+  RELATIVE_DATE = Date.new(1900,1,1)
+
   def as_json(options = {})
     {
       id: id,
@@ -43,9 +45,9 @@ class Image < ActiveRecord::Base
     key = "#{user_id}_#{date.to_i}"
     if @score[key].blank?
       if created_at < date
-        @score[key] = created_at.to_i
+        @score[key] = age_in_days
       else
-        @score[key] = 10**10 + ((10**6) * been_theres_count) + created_at.to_i
+        @score[key] = 10**10 + ((10**6) * been_theres_count) + age_in_days
         @score[key] += 10**9 if friends_ids.include?(user_id)
       end
     end
@@ -55,6 +57,10 @@ class Image < ActiveRecord::Base
   private
   def been_theres_count
     self["bt_count"] || been_theres.count
+  end
+
+  def age_in_days
+    @age_in_days ||= (created_at.to_date - RELATIVE_DATE).to_i
   end
 
 end
