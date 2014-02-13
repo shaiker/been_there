@@ -40,9 +40,9 @@ class Image < ActiveRecord::Base
     end
   end
 
-  def score(user_id, date, friends_ids)
+  def score(for_user_id, date, friends_ids)
     @score ||= {}
-    key = "#{user_id}_#{date.to_i}"
+    key = "#{for_user_id}_#{date.to_i}"
     if @score[key].blank?
       if created_at < date
         @score[key] = age_in_days
