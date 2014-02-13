@@ -33,6 +33,7 @@ class User < ActiveRecord::Base
         graph = Koala::Facebook::API.new(fb_access_token)
         friends = graph.get_connections("me", "friends")
         friends_fb_ids = friends.map { |friend| friend["id"] }
+        friends_fb_ids << fb_uid
         existing_friends = User.where(fb_uid: friends_fb_ids)
         self.followees = existing_friends
 
