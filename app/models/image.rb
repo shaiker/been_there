@@ -13,7 +13,7 @@ class Image < ActiveRecord::Base
 
   mount_uploader :url, ImageUploader
 
-  RELATIVE_DATE = Date.new(1900,1,1)
+  RELATIVE_DATE = Time.parse("1900-01-01").to_i
 
   def as_json(options = {})
     {
@@ -60,7 +60,7 @@ class Image < ActiveRecord::Base
   end
 
   def age_in_days
-    @age_in_days ||= (created_at.to_date - RELATIVE_DATE).to_i
+    @age_in_days ||= (created_at.to_i - RELATIVE_DATE) / 86400.0  # 60sec * 60min * 24hrs = 86400
   end
 
 end
