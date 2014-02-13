@@ -39,3 +39,13 @@ production:
   host: been-there-mysql.cu85suap3wnr.us-east-1.rds.amazonaws.com
   username: boten
   password: ladyjulie
+
+qa:
+  adapter: mysql2
+  encoding: utf8
+  database: kokavo_qa
+  pool: 5
+  host: 127.0.0.1
+  username: boten
+  password: ladyjulie
+ 
