@@ -31,7 +31,7 @@ class ImagesController < ApplicationController
     elsif (categories = Category.where(name: @categories_names)).present?
       images = images.includes(:image_categories).where(image_categories: { category_id: categories.map(&:id) }).order("images.created_at DESC") 
     else
-      friends_ids = @user.followees.map(&:id) - [@user.id]
+      friends_ids = @user.followees.map(&:id)
       time = Time.at(params[:last_login].try(:to_i) || 0)
       images.sort! { |a, b| b.score(@user.id, time, friends_ids) <=> a.score(@user.id, time, friends_ids) }
     end

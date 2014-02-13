@@ -8,7 +8,7 @@ class Image < ActiveRecord::Base
   has_many :image_categories
   has_many :categories, through: :image_categories
 
-  scope :of_friends, lambda { |user| joins("join followships on images.user_id = followee_id").where(followships: { follower_id: user.id} ) }
+  scope :of_friends, lambda { |user| joins("join followships on images.user_id = followee_id").where(followships: { follower_id: user.id} ).where("followee_id <> #{user.id}") }
   # scope :with_counters, 
 
   mount_uploader :url, ImageUploader
