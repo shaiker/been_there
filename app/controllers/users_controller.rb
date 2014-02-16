@@ -13,7 +13,8 @@ class UsersController < ApplicationController
   end
 
   def images
-    render json: @user.images.order("created_at DESC").as_json(user_id: @user.id)
+    viewer = User.find(params[:user_id]) rescue @user
+    render json: @user.images.order("created_at DESC").as_json(user_id: viewer.id)
   end
 
   def has_friends?
