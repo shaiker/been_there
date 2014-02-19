@@ -7,7 +7,7 @@ gem 'rails', '3.2.11'
 
 gem 'mysql2'
 gem 'carrierwave'
-gem 'debugger'
+#gem 'debugger'
 gem 'god'
 gem 'unicorn'
 gem 'mini_magick'
