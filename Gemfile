@@ -7,7 +7,6 @@ gem 'rails', '3.2.11'
 
 gem 'mysql2'
 gem 'carrierwave'
-#gem 'debugger'
 gem 'god'
 gem 'unicorn'
 gem 'mini_magick'
@@ -17,7 +16,7 @@ gem 'koala'
 group :development do
   gem 'capistrano-rails'
   gem 'rvm-capistrano', :require => false
-  
+  gem 'debugger'
   gem 'rspec-rails'
 end
 
