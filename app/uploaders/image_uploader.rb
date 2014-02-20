@@ -13,6 +13,12 @@ class ImageUploader < CarrierWave::Uploader::Base
   version :normal do
     process resize_to_fit: [1156, 640], if: :is_landscape?
     process resize_to_fit: [640, 1156], if: :is_portrait?
+    process :quality => 85
+  end
+
+  version :thumbnail do
+    process resize_to_fill: [200, 200]
+    process :quality => 85
   end
 
   # Override the directory where uploaded files will be stored.

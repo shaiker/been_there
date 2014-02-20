@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20131027162316) do
+ActiveRecord::Schema.define(:version => 20140120174435) do
 
   create_table "been_theres", :force => true do |t|
     t.integer  "image_id"
@@ -19,6 +19,14 @@ ActiveRecord::Schema.define(:version => 20131027162316) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "categories", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "categories", ["name"], :name => "index_categories_on_name", :unique => true
 
   create_table "comments", :force => true do |t|
     t.integer  "image_id"
@@ -34,6 +42,27 @@ ActiveRecord::Schema.define(:version => 20131027162316) do
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
+
+  create_table "followships", :force => true do |t|
+    t.integer  "follower_id"
+    t.integer  "followee_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "followships", ["followee_id"], :name => "index_followships_on_followee_id"
+  add_index "followships", ["follower_id", "followee_id"], :name => "index_followships_on_follower_id_and_followee_id", :unique => true
+  add_index "followships", ["follower_id"], :name => "index_followships_on_follower_id"
+
+  create_table "image_categories", :force => true do |t|
+    t.integer  "image_id"
+    t.integer  "category_id"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  add_index "image_categories", ["category_id"], :name => "index_image_categories_on_category_id"
+  add_index "image_categories", ["image_id"], :name => "index_image_categories_on_image_id"
 
   create_table "image_views", :force => true do |t|
     t.integer  "image_id"
@@ -63,13 +92,26 @@ ActiveRecord::Schema.define(:version => 20131027162316) do
     t.integer  "push_type"
   end
 
+  create_table "tips", :force => true do |t|
+    t.string   "title"
+    t.string   "text"
+    t.integer  "category_id"
+    t.string   "url"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+    t.string   "image"
+  end
+
   create_table "users", :force => true do |t|
     t.datetime "created_at",                                                                     :null => false
     t.datetime "updated_at",                                                                     :null => false
     t.string   "name",            :default => "Been There User"
-    t.string   "image",           :default => "http://dev.kokavo.com/assets/anonymous_user.png"
+    t.string   "image",           :default => "http://www.kokavo.com/assets/anonymous_user.png"
     t.string   "fb_uid"
     t.string   "fb_access_token"
+    t.text     "fb_friends"
   end
+
+  add_index "users", ["fb_uid"], :name => "index_users_on_fb_uid"
 
 end

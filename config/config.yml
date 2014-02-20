@@ -2,15 +2,15 @@ development:
   host: "http://dev.kokavo.com"
   uploads_dir: "uploads"
   appoxee:
-    campaign_id: 
-    application_id:
+    campaign_id: 158592
+    application_id: 102484
 
 qa:
   host: http://qa.kokavo.com
   uploads_dir: uploads
   appoxee:
-    campaign_id:
-    application_id:
+    campaign_id: 158592
+    application_id: 102484
 
 production:
   host: "http://www.kokavo.com"

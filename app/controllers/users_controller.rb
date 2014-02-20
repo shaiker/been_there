@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :set_user, only: [:notifications, :digest_notifications, :images]
+  before_filter :set_user, only: [:notifications, :digest_notifications, :images, :follow, :get_followees, :get_followers]
 
   NOTIFICATIONS_COUNT = 10
   def notifications
@@ -13,7 +13,40 @@ class UsersController < ApplicationController
   end
 
   def images
-    render json: @user.images.as_json(user_id: @user.id)
+    viewer = User.find(params[:user_id]) rescue @user
+    render json: @user.images.order("created_at DESC").as_json(user_id: viewer.id)
+  end
+
+  def has_friends?
+    render text: "true"
+  end
+
+  def get_followees
+    render json: @user.followees.as_json
+  end
+
+  def get_followers
+    render json: @user.followers.as_json
+  end
+
+  def update_access_token
+    user = User.find_by_fb_uid(params[:fb_uid])
+    render json: { success: user.present? && user.update_attribute(:fb_access_token, params[:fb_access_token]) }
+  end
+
+  def follow
+    by_user = User.find(params[:by_user])
+    if by_user.present?
+      @user.followers << by_user rescue ActiveRecord::RecordNotUnique
+      render json: { success: true }
+    else
+      render json: { success: false, errors: "cannot find user with id #{params[:id]}" }
+    end
+  end
+
+  def unfollow
+    Followship.where(follower_id: params[:by_user], followee_id: params[:id]).destroy_all
+    render json: { success: true }
   end
 
   def signup
@@ -31,8 +64,7 @@ class UsersController < ApplicationController
     else
       @user = User.new
     end
-    @user.save
-    render json: { user_id: @user.id }
+    render json: { success: @user.save!, user_id: @user.id, errors: @user.errors }
   end
 
   private
