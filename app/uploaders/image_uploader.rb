@@ -24,7 +24,7 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
   def store_dir
-    "#{APP_CONFIG['uploads_dir']}/#{model.class.to_s.underscore}/user_#{model.user_id}"
+    "#{APP_CONFIG['uploads_dir']}/#{model.class.name.to_s.underscore}/user_#{model.user_id}"
   end
 
   def is_landscape?(picture)

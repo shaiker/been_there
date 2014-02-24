@@ -54,6 +54,15 @@ class Image < ActiveRecord::Base
     return @score[key]
   end
 
+  def change_owner(new_user_id)
+    copy = Modeless::Image.new
+    copy.user_id = new_user_id
+    copy.remote_url_url = self.url.url
+    copy.save
+
+    update_attributes(user_id: new_user_id)
+  end
+
   private
   def been_theres_count
     self["bt_count"] || been_theres.count
