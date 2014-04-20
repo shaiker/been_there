@@ -35,7 +35,7 @@ class ImagesController < ApplicationController
       time = Time.at(params[:last_login].try(:to_i) || 0)
       images.sort! { |a, b| b.score(@user.id, time, friends_ids) <=> a.score(@user.id, time, friends_ids) }
     end
-    result = images.as_json(user_id: @user.id)
+    result = images.first(200).as_json(user_id: @user.id)
     Rails.logger.info "----- Took: #{Time.now - start} ms"
     render json: result
   end
