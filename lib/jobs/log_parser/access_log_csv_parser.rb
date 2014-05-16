@@ -6,6 +6,8 @@ class AccessLogCsvParser
 
   TITLES = ["ip", "date", "time", "http_action", "response_code", "object", "object_id", "action"]
 
+  OUTPUT_COLUMNS = ["date", "time", "user_id", "action", "friends", "categories", "categories%5B%5D"]
+
   LINE_STRUCTURE = { 
     ip: 0, 
     donno1: 1,
@@ -33,11 +35,13 @@ class AccessLogCsvParser
 
   def export_csv(hashes)
     CSV.open(@csv_output,"w") do |row|
-      row << TITLES + params_list
+      # row << TITLES + params_list
+      row << OUTPUT_COLUMNS
       hashes.each do |hash|
         cur_row = []
-        TITLES.each { |title| cur_row << hash[title] || "" }
-        params_list.each { |param| cur_row << hash[:params][param] || "" }
+        OUTPUT_COLUMNS.each { |param| cur_row << (hash[param] || hash[:params][param] || "") }
+        # TITLES.each { |title| cur_row << hash[title] || "" }
+        # params_list.each { |param| cur_row << hash[:params][param] || "" }
 
         row << cur_row.map { |val| val.to_s.gsub("\"", "") }
       end
