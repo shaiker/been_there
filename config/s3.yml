@@ -1,0 +1,19 @@
+production:
+  aws_access_key_id: "AKIAIKIXQKTPC3DO6W7Q"
+  aws_secret_access_key: "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"
+  bucket: 'been-there-images'
+  asset_host: "http://d2ms2r4k9boggo.cloudfront.net"
+
+
+development:
+  aws_access_key_id: "AKIAIRU3NHJIX7BG2IZA"
+  aws_secret_access_key: "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"
+  bucket: 'been-there-images-dev'
+  asset_host: "http://d1c3nc79xfivfi.cloudfront.net"
+
+
+qa:
+  aws_access_key_id: "AKIAIRU3NHJIX7BG2IZA"
+  aws_secret_access_key: "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"
+  bucket: 'been-there-images-qa'
+  asset_host: "http://d1c3nc79xfivfi.cloudfront.net"
