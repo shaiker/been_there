@@ -22,10 +22,7 @@ class ImagesController < ApplicationController
 
   def feed
     start = Time.now
-    images = Image.includes(:user, :categories)
-                  .select("images.*, COUNT(DISTINCT been_theres.id) AS bt_count, COUNT(DISTINCT comments.id) AS cmt_count, MAX(CASE WHEN been_theres.user_id = #{@user.id} THEN 1 ELSE 0 END) AS is_been_there")
-                  .joins("LEFT OUTER JOIN been_theres ON images.id = been_theres.image_id LEFT OUTER JOIN comments on images.id = comments.image_id")
-                  .group("images.id")    
+    images = Image.includes(:user, :categories).select("images.*, COUNT(DISTINCT been_theres.id) AS bt_count, COUNT(DISTINCT comments.id) AS cmt_count, MAX(CASE WHEN been_theres.user_id = #{@user.id} THEN 1 ELSE 0 END) AS is_been_there").joins("LEFT OUTER JOIN been_theres ON images.id = been_theres.image_id LEFT OUTER JOIN comments on images.id = comments.image_id").group("images.id")    
     if params[:friends] == "all"
       images = images.of_friends(@user).order("images.created_at DESC") 
     elsif (categories = Category.where(name: @categories_names)).present?
@@ -33,7 +30,7 @@ class ImagesController < ApplicationController
     else
       friends_ids = @user.followees.map(&:id)
       time = Time.at(params[:last_login].try(:to_i) || 0)
-      images.sort! { |a, b| b.score(@user.id, time, friends_ids) <=> a.score(@user.id, time, friends_ids) }
+      images = images.sort! { |a, b| b.score(@user.id, time, friends_ids) <=> a.score(@user.id, time, friends_ids) }
     end
     result = images.first(50).as_json(user_id: @user.id)
     Rails.logger.info "----- Took: #{Time.now - start} sec"
